@@ -6,29 +6,37 @@ Shopify provides APIs for both fulfillment and carrier service creation and mana
 
 This app provides an example of using both.
 
-Read the section below and browse the code to learn how to set these APIs up for your own purposes.
+The sections below outline the steps required to set up an app of your own to provide fulfillment or carrier serivces.
+
+The workflow looks like this:
+1. Create an app
+2. Register your app as a carrier/fulfillment service, and subscribe to relevant notifications
+3. Provide specific endpoints for Shopify to send order info to to trigger fulfillment, get shipping rates, or ask for inventory levels.
 
 ## Setup  
 
-### Common steps:
+### App Creation:
 
 1. Sign up as a [Shopify Partner](http://partners.shopify.com).
 2. Request beta access by emailing [apps@shopify.com](mailto:apps@shopify.com). Tell us what you're planning on building as well as the email associated with your Partners account.
-3. Create an app through the Partners Dashboard.
+3. Create an app through the Partners Dashboard. See our [Development Guide](http://wiki.shopify.com/Shopify_App_Development) for more info.
 
 ### Steps to set up a fulfillment service:
 
 1. Add the `write_fulfillments` permission to your [requested scopes](http://api.shopify.com/authentication.html)
 2. On install, create a new fulfillment service. It needs the following params:
 
-  * `name` - The name of your service
-  * `handle` - The URL-compatible version of your app's name
-  * `remote_address` (If doing stock checks) - The endpoint that Shopfify should hit to get stock and tracking data
-  * `inventory_management` - Does your service support inventory management?
-  * `tracking_support` - Does your service provide tracking numbers?
-  * `requires_shipping_method` - Does products fulfilled by your service require a shipping method?
+  * `name` - The name of your service as seen by merchants and their customers
+  * `handle` - The URL-compatible version of your service's name
+  * `inventory_management` - Does your service keep track of product inventory and provid updates to Shopify?
+  * `remote_address` (If doing inventory checks) - The endpoint that Shopify should hit to get inventory and tracking updates
+  * `tracking_support` - Does your service provide tracking numbers for packages?
+  * `requires_shipping_method` - Do products fulfilled by your service require physical shipping?
 
-  Example cURL request: `curl -X POST -d @fulfillment_service.json -H "Content-Type:application/json" http://myshop.myshopify.com/admin/fulfillment_services`
+  Example cURL request to Shopify:
+
+  `curl -X POST -d @fulfillment_service.json -H "Content-Type:application/json"
+  http://myshop.myshopify.com/admin/fulfillment_services`
 
   fulfillment_service.json:
   <pre><code>{
@@ -39,10 +47,13 @@ Read the section below and browse the code to learn how to set these APIs up for
       'tracking_support': true,
       'requires_shipping_method': true
   }</code></pre>
-3. Subscribe to `fulfillments/create` and `fulfillments/update` webhooks
-4. Expose the following GET endpoints:
-  * `[remote_address]/fetch_tracking_numbers`: expects a list of Shopify order IDs, returns the tracking numbers for those orders.
-      * Example request: `http://myapp.com/fetch_tracking_numbers?order_ids[]=1&order_ids[]=2&order_ids[]=3`
+3. Subscribe to `fulfillments/create` and `fulfillments/update` webhooks using the [Webhook API](http://api.shopify.com/webhook.html).
+4. Expose the following GET endpoints, rooted at the `remote_address` you defined when creating the service:
+  * `/fetch_tracking_numbers`: expects a list of Shopify order IDs, returns the tracking numbers for those orders.
+      * Example request from Shopify:
+
+          `http://myapp.com/fetch_tracking_numbers?order_ids[]=1&order_ids[]=2&order_ids[]=3`
+
       * Example response:
 
           <pre><code>{
@@ -54,9 +65,14 @@ Read the section below and browse the code to learn how to set these APIs up for
               'message': 'Successfully received the tracking numbers',
               'success': true
           }</code></pre>
-  * `[remote_address]/fetch_stock`: Expects a sku and a shop name, returns the stock level for that sku
-      * Example request: `https://myapp.com/fetch_stock?sku=123&shop=testshop.myshopify.com`
-      * Example response: `{'123': 1000}`
+  * `/fetch_stock`: Expects a SKU and a shop name, returns the inventory level for that SKU
+      * Example request:
+
+          `https://myapp.com/fetch_stock?sku=123&shop=testshop.myshopify.com`
+
+      * Example response:
+
+          `{'123': 1000}`
 
 ### Steps to set up a carrier/shipping service:
 
@@ -64,22 +80,22 @@ Read the section below and browse the code to learn how to set these APIs up for
 2. On install, create a new carrier service through the API. It needs the following params:
   * `name` - The name of your service
   * `callback_url` - The endpoint Shopify should hit for shipping rates
-  * `format` - The format you want to talk to Shopify in (`xml` or `json`)
-  * `service_discovery` - Should merchants be able to send test requests to your service?
+  * `service_discovery` - Should merchants be able to send dummy data to your service through the Shopify Admin to see examples of your shipping rates?
 
-  Example cURL request: `curl -X POST -d @carrier_service.json -H "Content-Type:application/json" http://myshop.myshopify.com/admin/carrier_services`
+  Example cURL request:
+
+  `curl -X POST -d @carrier_service.json -H "Content-Type:application/json"
+  http://myshop.myshopify.com/admin/carrier_services`
 
   carrier_service.json:
   <pre><code>{
       'name': 'My Carrier Service',
       'callback_url': 'http://myapp.com',
-      'format': 'json',
       'service_discovery': true
     }
   </code></pre>
-3. Expose the following POST endpoint:
-  * `[callback_url]`: Expects a request for shipping rates. Should return an array of applicable rates.
-      * Example request:
+3. Your `callback_url` should be a public endpoint that expects a request for shipping rates and should return an array of applicable rates.
+      * Example request from Shopify:
       <pre><code>{
               "rate": {
                 "origin": {
