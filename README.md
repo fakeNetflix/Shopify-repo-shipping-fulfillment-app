@@ -4,6 +4,12 @@
 
 Shopify provides APIs for both fulfillment and carrier service creation and management.
 
+Carrier Services provide shipping rates to Shopify, and are presumably backed by an actual shipping service. FedEx, UPS, USPS, Royal Mail, etc. are all carriers that might want to use this API.
+
+The terms 'carrier' and 'shipping' are often used interchangably.
+
+Fulfillment Services are responsible for fulfilling orders. This involves being notified when an order is placed, and updating Shopify about order statuses and product inventory levels.
+
 This app provides an example of using both.
 
 The sections below outline the steps required to set up an app of your own to provide fulfillment or carrier serivces.
@@ -29,7 +35,7 @@ The workflow looks like this:
   * `name` - The name of your service as seen by merchants and their customers
   * `handle` - The URL-compatible version of your service's name
   * `inventory_management` - Does your service keep track of product inventory and provid updates to Shopify?
-  * `remote_address` (If doing inventory checks) - The endpoint that Shopify should hit to get inventory and tracking updates
+  * `callback_url` (If doing inventory checks) - The endpoint that Shopify should hit to get inventory and tracking updates
   * `tracking_support` - Does your service provide tracking numbers for packages?
   * `requires_shipping_method` - Do products fulfilled by your service require physical shipping?
 
@@ -42,13 +48,13 @@ The workflow looks like this:
   <pre><code>{
       'name': 'My Fulfillment Service',
       'handle': 'my_fulfillment_service',
-      'remote_address': 'http://myapp.com',
+      'callback_url': 'http://myapp.com',
       'inventory_management': true,
       'tracking_support': true,
       'requires_shipping_method': true
   }</code></pre>
 3. Subscribe to `fulfillments/create` and `fulfillments/update` webhooks using the [Webhook API](http://api.shopify.com/webhook.html).
-4. Expose the following GET endpoints, rooted at the `remote_address` you defined when creating the service:
+4. Expose the following GET endpoints, rooted at the `callback_url` you defined when creating the service:
   * `/fetch_tracking_numbers`: expects a list of Shopify order IDs, returns the tracking numbers for those orders.
       * Example request from Shopify:
 
