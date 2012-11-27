@@ -17,7 +17,8 @@ The sections below outline the steps required to set up an app of your own to pr
 The workflow looks like this:
 
 1. Create an app
-2. Register your app as a carrier/fulfillment service, and subscribe to relevant notifications
+2. Register your a fulfillment service
+3. Register a carrier service and subscribe to relevant notifications
 3. Provide specific endpoints for Shopify to send order info to to trigger fulfillment, get shipping rates, or ask for inventory levels.
 
 ## Setup  
