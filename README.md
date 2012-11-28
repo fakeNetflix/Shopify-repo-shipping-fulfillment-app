@@ -16,19 +16,12 @@ The terms 'carrier' and 'shipping' are often used interchangably.
 
 ## Setup
 
-<<<<<<< HEAD
-1. Create an app
-2. Register your a fulfillment service
-3. Register a carrier service and subscribe to relevant notifications
-3. Provide specific endpoints for Shopify to send order info to to trigger fulfillment, get shipping rates, or ask for inventory levels.
-=======
 1. Register as a [Shopify Partner](http://partners.shopify.com)
 2. Request beta access by emailing [apps@shopify.com](mailto:apps@shopify.com). Tell us what you're planning on building as well as the email associated with your Partners account.
 3. Create an app through the Partners Dashboard. See our [Development Guide](http://wiki.shopify.com/Shopify_App_Development) for more info.
 4. Register a fulfillment service. Directions are included below.
 5. Register a carrier service and subscribe to relevant notifications. Directions are included below.
 6. Provide specific endpoints for Shopify to send order info to trigger fulfillment, get shipping rates, or ask for inventory levels.
->>>>>>> Docs updated
 
 ### Steps to set up a fulfillment service
 
@@ -186,6 +179,17 @@ Example response:
            {
                'service_name': 'canadapost-overnight',
                'service_code': 'ON',
+               'total_price': '12.95',
+               'currency': 'CAD'
+           },
+           {
+               'service_name': 'fedex-2dayground',
+               'service_code': '1D',
+               'total_price': '29.34',
+               'currency': 'USD'
+           }
+       ]
+    }rvice_code': 'ON',
                'total_price': '12.95',
                'currency': 'CAD'
            },
