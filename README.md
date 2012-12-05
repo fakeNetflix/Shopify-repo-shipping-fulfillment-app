@@ -45,12 +45,12 @@ Here’s an example of a request payload to make a new fulfillment service:
   `fulfillment_service.json`:
   
     {
-        'name': 'My Fulfillment Service',
-        'handle': 'my_fulfillment_service',
-        'callback_url': 'http://myapp.com',
-        'inventory_management': true,
-        'tracking_support': true,
-        'requires_shipping_method': true
+        "name": "My Fulfillment Service",
+        "handle": "my_fulfillment_service",
+        "callback_url": "http://myapp.com",
+        "inventory_management": true,
+        "tracking_support": true,
+        "requires_shipping_method": true
     }
 
 Here’s an example cURL request to Shopify that uses that `fulfillment_service.json` payload:
@@ -75,13 +75,13 @@ Example `/fetch_tracking_numbers` request from Shopify:
 
 Example `/fetch_tracking_numbers` response:
 
-      { 'tracking_numbers': {
-          '1': 'qwerty',
-          '2': 'asdfg',
-          '3': 'zxcvb'
+      { "tracking_numbers": {
+          "1": "qwerty",
+          "2": "asdfg",
+          "3": "zxcvb"
         },
-        'message': 'Successfully received the tracking numbers',
-        'success': true
+        "message": "Successfully received the tracking numbers",
+        "success": true
       }
       
 Example `/fetch_tracking_numbers` request:
@@ -90,7 +90,7 @@ Example `/fetch_tracking_numbers` request:
 
 Example `/fetch_tracking_numbers` response:
 
-    {'123': 1000}
+    {"123": 1000}
 
 ### Steps to set up a carrier/shipping service:
 #### Setting permissions
@@ -109,9 +109,9 @@ Here's an example of the request payload:
   carrier_service.json:
   
     {
-        'name': 'My Carrier Service',
-        'callback_url': 'http://myapp.com',
-        'service_discovery': true
+        "name": "My Carrier Service",
+        "callback_url": "http://myapp.com",
+        "service_discovery": true
     }
 
 
