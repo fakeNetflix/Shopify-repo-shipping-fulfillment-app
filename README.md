@@ -44,13 +44,16 @@ Here’s an example of a request payload to make a new fulfillment service:
   
   `fulfillment_service.json`:
   
-    {
+    { "fulfillment_service": 
+      {
         "name": "My Fulfillment Service",
         "handle": "my_fulfillment_service",
         "callback_url": "http://myapp.com",
         "inventory_management": true,
         "tracking_support": true,
-        "requires_shipping_method": true
+        "requires_shipping_method": true,
+        "response_format": "json"
+      }
     }
 
 Here’s an example cURL request to Shopify that uses that `fulfillment_service.json` payload:
