@@ -245,8 +245,8 @@ class ShippingExtensionTest < ActiveSupport::TestCase
         <Full>Davids Address</Full>
       </Name>
       <Address1>7318 Black Swan Place</Address1>
-      <Address2></Address2>
-      <Company></Company>
+      <Address2/>
+      <Company/>
       <City>Carlsbad</City>
       <State>California</State>
       <Country>United States</Country>

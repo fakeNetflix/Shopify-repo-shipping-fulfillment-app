@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(:version => 20121029140558) do
     t.integer  "shop_id"
   end
 
+  create_table "settings", :force => true do |t|
+    t.string   "login"
+    t.string   "password"
+    t.boolean  "automatic_fulfillment"
+    t.string   "shop_id"
+    t.string   "token"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
   create_table "shops", :force => true do |t|
     t.string   "login"
     t.string   "password"
@@ -78,5 +88,37 @@ ActiveRecord::Schema.define(:version => 20121029140558) do
     t.string   "domain"
     t.boolean  "valid_credentials",     :default => false
   end
+
+  create_table "trackers", :force => true do |t|
+    t.string   "tracking_carrier"
+    t.string   "tracking_link"
+    t.integer  "tracking_number"
+    t.datetime "ship_date"
+    t.datetime "expected_delivery_date"
+    t.datetime "return_date"
+    t.string   "return_condition"
+    t.string   "shipper_name"
+    t.string   "total"
+    t.string   "returned"
+    t.string   "returned_status"
+    t.string   "shipped"
+    t.integer  "fulfillment_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "trackers", ["fulfillment_id"], :name => "index_trackers_on_fulfillment_id"
+
+  create_table "variants", :force => true do |t|
+    t.integer  "variant_id"
+    t.integer  "setting_id"
+    t.integer  "inventory"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "activated"
+    t.string   "sku"
+  end
+
+  add_index "variants", ["setting_id"], :name => "index_synced_variants_on_setting_id"
 
 end
