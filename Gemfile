@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.12'
+gem 'rails', '~> 3.2'
 
 gem 'thin'
 
@@ -13,7 +13,7 @@ gem 'less-rails-bootstrap'
 gem 'jquery-rails'
 gem "state_machine", "~> 1.1.2"
 gem 'shopify_app'
-gem 'shopify_api', "3.0.1"
+gem 'shopify_api'
 gem 'resque', :require => 'resque/server'
 gem 'redis', '~> 2.2.0', :require => ['redis/connection/hiredis', 'redis'], :git => 'git://github.com/ssoroka/redis-rb.git', :branch => 'srem_patch', :ref => '949568e'
 gem 'hiredis','~> 0.4.5' # Faster redis
