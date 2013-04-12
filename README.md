@@ -183,24 +183,25 @@ Example response:
                'service_name': 'canadapost-overnight',
                'service_code': 'ON',
                'total_price': '12.95',
-               'currency': 'CAD'
+               'currency': 'CAD',
+               'min_delivery_date': '2013-04-12 14:48:45 -0400',
+               'max_delivery_date': '2013-04-12 14:48:45 -0400'
            },
            {
                'service_name': 'fedex-2dayground',
                'service_code': '1D',
                'total_price': '29.34',
-               'currency': 'USD'
-           }
-       ]
-    }rvice_code': 'ON',
-               'total_price': '12.95',
-               'currency': 'CAD'
+               'currency': 'USD',
+               'min_delivery_date': '2013-04-12 14:48:45 -0400',
+               'max_delivery_date': '2013-04-12 14:48:45 -0400'
            },
            {
                'service_name': 'fedex-2dayground',
                'service_code': '1D',
                'total_price': '29.34',
-               'currency': 'USD'
+               'currency': 'USD',
+               'min_delivery_date': '2013-04-12 14:48:45 -0400',
+               'max_delivery_date': '2013-04-12 14:48:45 -0400'
            }
        ]
     }
