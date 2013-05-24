@@ -87,11 +87,11 @@ Example `/fetch_tracking_numbers` response:
         "success": true
       }
       
-Example `/fetch_tracking_numbers` request:
+Example `/fetch_stock` request:
 
     https://myapp.com/fetch_stock?sku=123&shop=testshop.myshopify.com
 
-Example `/fetch_tracking_numbers` response:
+Example `/fetch_stock` response:
 
     {"123": 1000}
 
