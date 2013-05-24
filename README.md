@@ -30,7 +30,7 @@ API doc at: http://docs.shopify.com/api/carrierservice
 
 #### Setting fulfillments permissions
 
-Add the `write_fulfillments` permission to your [requested scopes](http://api.shopify.com/authentication.html).
+Add the `write_fulfillments` permission to your [requested scopes](http://docs.shopify.com/api/tutorials/oauth).
 
 #### Register a new fulfillment service
 
@@ -69,7 +69,7 @@ Here’s an example cURL request to Shopify that uses that `fulfillment_service.
 
 #### Subscribe to fulfillment webhooks
 
-Subscribe to `fulfillments/create` and `fulfillments/update` webhooks using the [Webhook API](http://api.shopify.com/webhook.html).
+Subscribe to `fulfillments/create` and `fulfillments/update` webhooks using the [Webhook API](http://docs.shopify.com/api/tutorials/webhooks).
 
 #### Provide fulfillment endpoints
 
@@ -103,7 +103,7 @@ Example `/fetch_stock` response:
 
 ### Steps to set up a carrier/shipping service:
 #### Setting permissions
-Add the `write_shipping` permission to your [requested scopes](http://api.shopify.com/authentication.html).
+Add the `write_shipping` permission to your [requested scopes](http://docs.shopify.com/api/tutorials/oauth).
 
 #### Register a new shipping service
 
