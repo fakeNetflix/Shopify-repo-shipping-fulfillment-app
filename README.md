@@ -21,7 +21,7 @@ API doc at: http://docs.shopify.com/api/carrierservice
 ## Setup
 
 1. Register as a [Shopify Partner](http://partners.shopify.com)
-2. Create an app through the Partners Dashboard. See our [Development Guide](http://wiki.shopify.com/Shopify_App_Development) for more info.
+2. Create an app through the Partners Dashboard. See our [Development Guide](http://docs.shopify.com/api/the-basics/getting-started) for more info.
 3. Register a fulfillment service. Directions are included below.
 4. Register a carrier service and subscribe to relevant notifications. Directions are included below.
 5. Provide specific endpoints for Shopify to send order info to trigger fulfillment, get shipping rates, or ask for inventory levels.
@@ -124,7 +124,7 @@ Here's an example of the request payload:
         "name": "My Carrier Service",
         "callback_url": "http://myapp.com",
         "service_discovery": true
-        "format": "json"
+        "response_format": "json"
       }
     }
 
