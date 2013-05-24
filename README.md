@@ -8,20 +8,23 @@ Shopify wants you to appear in the Shopify App Store as a fulfillment partner. T
 
 Fulfillment Services are responsible for fulfilling orders. This involves being notified by Shopify when an order is placed, and updating Shopify about order statuses and product inventory levels.
 
+API doc at: http://docs.shopify.com/api/fulfillmentservice
+
 ### The Carrier Service API
 
 Carrier Services provide shipping rates to Shopify, and are presumably backed by an actual shipping service. FedEx, UPS, USPS, Royal Mail, etc. are all carriers that might want to use this API.
 
 The terms 'carrier' and 'shipping' are often used interchangably.
 
+API doc at: http://docs.shopify.com/api/carrierservice
+
 ## Setup
 
 1. Register as a [Shopify Partner](http://partners.shopify.com)
-2. Request beta access by emailing [apps@shopify.com](mailto:apps@shopify.com). Tell us what you're planning on building as well as the email associated with your Partners account.
-3. Create an app through the Partners Dashboard. See our [Development Guide](http://wiki.shopify.com/Shopify_App_Development) for more info.
-4. Register a fulfillment service. Directions are included below.
-5. Register a carrier service and subscribe to relevant notifications. Directions are included below.
-6. Provide specific endpoints for Shopify to send order info to trigger fulfillment, get shipping rates, or ask for inventory levels.
+2. Create an app through the Partners Dashboard. See our [Development Guide](http://wiki.shopify.com/Shopify_App_Development) for more info.
+3. Register a fulfillment service. Directions are included below.
+4. Register a carrier service and subscribe to relevant notifications. Directions are included below.
+5. Provide specific endpoints for Shopify to send order info to trigger fulfillment, get shipping rates, or ask for inventory levels.
 
 ### Steps to set up a fulfillment service
 
@@ -58,8 +61,11 @@ Here’s an example of a request payload to make a new fulfillment service:
 
 Here’s an example cURL request to Shopify that uses that `fulfillment_service.json` payload:
 
-  `curl -X POST -d @fulfillment_service.json -H "Content-Type:application/json"
-  http://myshop.myshopify.com/admin/fulfillment_services`
+  `curl -X POST -d @fulfillment_service.json
+        -H "Accept:application/json"
+        -H "Content-Type:application/json"
+        -H "X-Shopify-Access-Token:THE_AUTH_TOKEN_GOES_HERE"
+        http://myshop.myshopify.com/admin/fulfillment_services`
 
 #### Subscribe to fulfillment webhooks
 
@@ -125,8 +131,11 @@ Here's an example of the request payload:
 
 Example cURL request:
 
-  `curl -X POST -d @carrier_service.json -H "Content-Type:application/json"
-  http://myshop.myshopify.com/admin/carrier_services`
+  `curl -X POST -d @carrier_service.json
+        -H "Accept:application/json"
+        -H "Content-Type:application/json"
+        -H "X-Shopify-Access-Token:THE_AUTH_TOKEN_GOES_HERE"
+        http://myshop.myshopify.com/admin/carrier_services`
 
 #### Provide shipping endpoints
 Your `callback_url` should be a public endpoint that expects a request for shipping rates and should return an array of applicable rates.
