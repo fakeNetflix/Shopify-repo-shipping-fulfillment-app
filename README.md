@@ -106,15 +106,20 @@ On install, create a new carrier service through the API. It needs the following
   * `name` - The name of your service
   * `callback_url` - The endpoint Shopify should hit for shipping rates
   * `service_discovery` - Should merchants be able to send dummy data to your service through the Shopify Admin to see examples of your shipping rates?
+  * `format` - json or xml
+
 
 Here's an example of the request payload:
 
   carrier_service.json:
   
-    {
+    { "carrier_service":
+      {
         "name": "My Carrier Service",
         "callback_url": "http://myapp.com",
         "service_discovery": true
+        "format": "json"
+      }
     }
 
 
