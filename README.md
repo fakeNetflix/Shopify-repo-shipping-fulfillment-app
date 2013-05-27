@@ -55,7 +55,7 @@ Here’s an example of a request payload to make a new fulfillment service:
         "inventory_management": true,
         "tracking_support": true,
         "requires_shipping_method": true,
-        "response_format": "json"
+        "format": "json"
       }
     }
 
@@ -124,7 +124,7 @@ Here's an example of the request payload:
         "name": "My Carrier Service",
         "callback_url": "http://myapp.com",
         "service_discovery": true
-        "response_format": "json"
+        "format": "json"
       }
     }
 

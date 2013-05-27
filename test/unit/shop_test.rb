@@ -72,7 +72,7 @@ class ShopTest < ActiveSupport::TestCase
         template: nil,
         remote_address: 'http://davefp.showoff.io',
         include_pending_stock: 0,
-        response_format: 'json'
+        format: 'json'
       }
     }
   end
