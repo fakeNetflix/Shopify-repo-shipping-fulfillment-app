@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.17'
+gem 'rails', '~> 3.2.20'
 
 gem 'thin'
 
@@ -19,10 +19,6 @@ gem 'redis', '~> 2.2.0', :require => ['redis/connection/hiredis', 'redis'], :git
 gem 'hiredis','~> 0.4.5' # Faster redis
 gem "will_paginate", "~> 3.0.3"
 gem 'bootstrap-will_paginate'
-
-# To use debugger
-gem 'debugger'
-
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
